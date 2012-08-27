@@ -1024,6 +1024,8 @@ class LiveOSCCallbacks:
                 po.append(i)
                 po.append(float(params[i].value))
                 po.append(str(params[i].name))
+                po.append(params[i].min)
+                po.append(params[i].max)
             
             self.oscEndpoint.send(ty == 1 and "/live/return/device/allparam" or "/live/device/allparam", tuple(po))
     
@@ -1036,7 +1038,7 @@ class LiveOSCCallbacks:
             else: 
                 p = LiveUtils.getSong().visible_tracks[track].devices[device].parameters[param]
         
-            self.oscEndpoint.send(ty == 1 and "/live/return/device/param" or "/live/device/param", (track, device, param, p.value, str(p.name)))
+            self.oscEndpoint.send(ty == 1 and "/live/return/device/param" or "/live/device/param", (track, device, param, p.value, str(p.name), p.min, p.max))
     
     
         elif len(msg) == 6:

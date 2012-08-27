@@ -924,11 +924,11 @@ class LiveOSC:
             
     def param_changestate(self, param, tid, did, pid, type):
         if type == 2:
-            self.oscEndpoint.send('/live/master/device/param', (did, pid, param.value, str(param.name)))
+            self.oscEndpoint.send('/live/master/device/param', (did, pid, param.value, str(param.name), param.min, param.max))
         elif type == 1:
-            self.oscEndpoint.send('/live/return/device/param', (tid, did, pid, param.value, str(param.name)))
+            self.oscEndpoint.send('/live/return/device/param', (tid, did, pid, param.value, str(param.name), param.min, param.max))
         else:
-            self.oscEndpoint.send('/live/device/param', (tid, did, pid, param.value, str(param.name)))
+            self.oscEndpoint.send('/live/device/param', (tid, did, pid, param.value, str(param.name), param.min, param.max ))
         
     def add_devicelistener(self, track, tid, type):
         cb = lambda :self.device_changestate(track, tid, type)
