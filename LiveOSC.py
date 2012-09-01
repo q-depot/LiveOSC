@@ -136,9 +136,9 @@ class LiveOSC:
             # Any 'play' initiation will trigger the current_song_time listener
             # and bump updates from 100ms to 60ms.
             
-        if self.oscEndpoint:
+        if self.oscEndpoint:        
             
-            self.oscEndpoint.send('/live/ping', '');
+            self.oscEndpoint.send('/live/ping', '')
             
             try:
                 self.oscEndpoint.processIncomingUDP()
