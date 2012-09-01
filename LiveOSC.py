@@ -116,7 +116,7 @@ class LiveOSC:
             # Since this method is called every 100ms regardless of the song time
             # changing, we use both methods for processing incoming UDP requests
             # so that from a resting state you can initiate play/clip triggering.
-
+                
             try:
                 doc = self.song()
             except:
@@ -137,6 +137,9 @@ class LiveOSC:
             # and bump updates from 100ms to 60ms.
             
         if self.oscEndpoint:
+            
+            self.oscEndpoint.send('/live/ping', '');
+            
             try:
                 self.oscEndpoint.processIncomingUDP()
             except:
